@@ -10,25 +10,17 @@ Course management and Timetable-Generator is a web application developed using D
 * Responsive design for optimal viewing on different devices.
 * Uses SQLite database for data storage.
 
-## Prerequisites
-
-* Python
-* Django
-* SQLite
-
 ## Installation
 
 1. Clone the repository:
 git clone https://github.com/vyom93/Course_management_BMP.git
-2. Change into the project directory:
-cd timetable_generator
-3. Install Dependencies:
+2. Install Dependencies:
 pip install django
-4. Apply the database migrations:
+3. Apply the database migrations:
 python manage.py migrate
-5. Create a superuser to access the admin dashboard:
+4. Create a superuser to access the admin dashboard:
 python manage.py createsuperuser
-6. Start the server:
+5. Start the server:
 python manage.py runserver
 
 ## Usage
