@@ -1,0 +1,226 @@
+Course No.,Course Name,Credits
+CO111,CoCurricular I,0-0-2-1
+CO121,CoCurricular II,0-0-2-1
+CO211,CoCurricular III,0-0-2-1
+CO212,Co-curricular IV,0-0-2-1
+CS201,Introductory Computational Physics,3-0-3-4.5
+CS301,High Performance Computing,3-0-3-4.5
+CS302,Modeling and Simulation,3-0-3-4.5
+CS374,Computational and Numerical Methods,3-0-3-4.5
+CS401,Computational Finance,3-0-2-4
+CS405,Quantum Computation,3-0-0-3
+CT204,Signals and Systems ,3-0-2-4
+CT216,Introduction to Communication Systems,3-0-2-4
+CT303,Digital Communication,3-0-2-4
+CT421,Advanced Digital Signal Processing,3-0-2-4
+CT425,RF and Antenna Engineering,3-0-0-3
+CT437,Speech Communication,3-0-0-3
+CT476,Microwave Engineering,3-0-2-4
+CT491,Satellite and Space Technology and Its Applications,3-0-0-3
+CT492,ML for Digital Signal Processing (New Elective),
+CT505,Detection and Estimation Theory,3-0-0-3
+CT546,Introduction to Wireless Communication,3-0-2-4
+CT547,Application of ML to Wireless Comm Systems,3-0-2-4
+CT548,Advanced Wireless Communication,3-0-2-4
+ED111,Engineering Mathematics I,3-1-0-4
+ED112,Magnetics & Electrics,3-1-0-4
+ED121,Engineering Mathematics II,3-1-0-4
+EL111,Basic Electronic Circuits,3-0-2-4
+EL203,Embedded Hardware Design,3-0-2-4
+EL312 ,Solid State Devices,3-0-0-3
+EL453,Nanoelectronics,3-0-0-3
+EL461,VLSI Testing and Validation,3-0-2-4
+EL467,Digital Programming,3-0-0-3
+EL495,Sensors & Instrumentation,3-0-2-4
+EL496,Robot Programming,3-0-2-4
+EL497,Autonomous Vehicles,
+EL516,Analog VLSI Design,3-0-2-4
+EL516 II,Analog VLSI Design,3-0-0-3
+EL519,Lowpower VLSI Design,2-0-2-3
+EL526,VLSI System Design,3-0-2-4
+EL527,ASIC Design,3-0-2-4
+EL529,Embedded Hardware Design,3-0-2-4
+EL530,Introduction to Embedded Artificial Intelligence,3-0-2-4
+EL531,Digital IC Design,3-0-0-3
+HM001,North Indian Classical Music 1,0-0-2-1
+HM002,North Indian Classical Music 2,0-0-2-1
+HM106,Approaches to Indian Society,3-0-0-3
+HM116,Principles of Economics,3-0-0-3
+HM216,"Science, Technology, and Society",3-0-0-3
+HM327,"Culture, Politics, Identity ",3-0-0-3
+HM333,Human Behaviour Management,3-0-0-3
+HM402,Publics in South Asia: Contemporary Perspectives,3-0-0-3
+HM403,Corporate Finance,3-0-0-3
+HM432,Organisational Behaviour,3-0-0-3
+HM481,Reading Plato,3-0-0-3
+HM484,Modern European Philosophy,3-0-0-3
+HM487,Indian Cinema: Lineages and the Present,3-0-0-3
+HM488,India through its Literature,3-0-0-3
+HM489,International Economy,3-0-0-3
+HM490,Communicating Conservation: Role of Cinema in influencing global environmental consciousness,2-0-2-3
+HM490 II,Literature and Society,3-0-0-3
+HM491,Crime Fiction,3-0-0-3
+HM702,Realism and Aestheticism,3-0-0-3
+HM710,PhD Colloquium,3-0-0-3
+IC101,Introduction to ICT,1-0-2-2
+IC121,Digital Logic and Computer Organization,3-0-2-4
+IC121,Digital Logic and Computer Organization,3-0-2-4
+IE402,Optimization,3-0-2-4
+IE403,Human Computer Interaction,3-0-2-4
+IE404,Digital Image Processing,3-0-2-4
+IE406,Machine Learning,3-0-2-4
+IE407,Internet of Things,3-0-2-4
+IE408,Control of Autonomous Systems ,3-0-2-4
+IE410,Introduction to Robotics,3-0-2-4
+IE411,Operating Systems,3-0-2-4
+IT112,Introduction to Programming,3-0-0-3
+IT113,Introduction to Programming Lab,0-0-2-1
+IT205,Data Structures,3-0-0-3
+IT206,Data Structure Lab using OOP,1-0-2-2
+IT214,Database Management System,3-0-2-4
+IT216,Design and Analysis of Algorithms,3-0-2-4
+IT227,Computer Systems Programming,3-0-2-4
+IT304,Computer Networks,3-0-2-4
+IT314,Software Engineering,3-0-2-4
+IT412,Natural Language Processing,3-0-2-4
+IT414,Software Project Management,3-0-2-4
+IT422,Models of Computation ,3-0-0-3
+IT449,Specification and Verification of Systems,3-0-0-3
+IT486,Blockchain and Cryptocurrencies,3-0-0-3
+IT489,DNA Storage and Security,3-0-0-3
+IT490,Introduction to Data Mining,3-0-2-4
+IT491,Cloud Computing,3-0-2-4
+IT492,Recommendation Systems,3-0-2-4
+IT494,Big Data Processing,3-0-2-4
+IT495,Exploratory Data Analysis,3-0-2-4
+IT496,Introduction to Data Mining,3-0-2-4
+IT498,Query Processing (New Elective),3-0-2-4
+IT499,Biometric Security (New Elective),3-0-2-4
+IT504,Distributed Databases,3-0-2-4
+IT524,Computer Vision,3-0-2-4
+IT531,Advanced Computer Networks,3-0-0-3
+IT544,Modern Cryptography,3-0-0-3
+IT546,Multimedia Security and Forensics,3-0-0-3
+IT550,Information Retrieval,3-0-2-4
+IT558,Information Security,3-0-2-4
+IT559,Distributed Systems,3-0-2-4
+IT561,Advanced Software Engineering,3-0-2-4
+IT580,Advanced Algorithm,3-0-2-4
+IT582,Foundations of Machine Learning ,3-0-2-4
+IT583,Deep Learning,3-0-2-4
+IT584,Approximation Algorithms,3-0-2-4
+IT585,Advanced Machine Learning,3-0-2-4
+IT590,Advanced Statistical Tools for Data Science,3-1-0-4
+IT602,Object Oriented Programming,3-0-2-4
+IT603,Programming,3-0-2-4
+IT605,Data Structures and Algorithms (with Python),3-0-2-4
+IT606,Programing Lab (Python),0-0-4-2
+IT607,Database Management Systems,3-0-2-4
+IT608,Machine Learning,3-0-2-4
+IT609,Big Data Processing,2-0-2-3
+IT615,Database Management Systems,3-0-2-4
+IT618,Enterprise Computing,3-0-2-4
+IT619,Design of Software Systems,3-0-2-4
+IT623,Algorithms and Data Structures,3-0-2-4
+IT627,Cloud Computing,3-0-2-4
+IT628,System Prpgramming,3-0-2-4
+IT629,Web Programming,3-0-2-4
+IT632,Software Engineering,3-0-2-4
+IT634,Information Systems Security,3-0-2-4
+IT641,Deep Learning,3-0-2-4
+IT642,Interactive Data Visualization,3-0-2-4
+IT694,Computer Networks,3-0-2-4
+MA611,Fundamentals of Python Programming and SQL,3-0-2-4
+MA612,Fundamentals of Analytics / Statistical Methods,3-0-2-4
+MA613,Earth Orbit Systems,3-0-2-4
+MA614,Preparatory Mathematics,1-0-0-1
+MA615,Fundamentals of Agricultural Science,1-0-0-1
+MA621,Programming for Geodata Processing,2-0-4-4
+MA622,Big Data Analytics,2-0-4-4
+MA623,Machine Learning,2-0-4-4
+MA624,Spatial Modeling and Data Assimilation,2-0-4-4
+MA631,Crops & Soil Analytics ,3-0-2-4
+MA632,Risk Analysis and Modelling,3-0-2-4
+MA633,Weather and Water Analytic,3-0-2-4
+MA634,Agriculture Market Analytics,3-0-2-4
+MC111,"Mathematical, Algorithmic, and Computational Thinking",3-1-0-4
+MC112,Computer Organization and Programming,3-0-0-3
+MC113,Computer Organization and Programming Lab,0-0-4-2
+MC116,Digital Logic Design,1-0-2-2
+MC122,Object Oriented Programming,2-0-2-3
+MC123,Discrete Mathematics,3-1-0-4
+MC124,Data Structures and Algorithms,3-0-2-4
+MC125,Functions of Single Variable and ODEs,3-1-0-4
+MC211,Functions of Several Variables and PDEs ,3-1-0-4
+MC212,Database Management Systems,3-0-2-4
+MC213,Design and Analysis of Algorithms,3-1-0-4
+MC214,Operating Systems,3-0-2-4
+MC215,Linear Algebra,3-1-0-4
+MC216,Probability and Random Processes,3-1-0-4
+MC221,Mathematical Statistics,3-1-0-4
+MC222,Real and Complex Analysis,3-1-0-4
+MC223,Theory of Computation,3-1-0-4
+MC224,Parallel and Distributed Algorithms,3-1-0-4
+MC225,Numerical and Computational Methods,3-0-2-4
+MC226,Environmental Studies,2-0-0-2
+MC311,Mathematical Optimization,3-1-0-4
+MC312,Modelling and Simulation,3-0-2-4
+MC313,Algebraic Structures,3-1-0-4
+MC314,Principles of Economics,3-0-0-3
+MC321,Machine Learning,3-0-2-4
+MOOC1,MOOC course under a faculty mentor,3-0-0-3
+MOOC2,MOOC course under a faculty mentor,3-0-2-4
+PC110,Language and Literature,3-0-0-3
+PC125,Exploration Project I ,0-1-0-1
+PC222,Exploration Project,0-0-2-1
+PC503,Programming Lab,1-0-4-3
+PC512,Communication Skills and Technical Writing,2-0-0-2
+PC604,Mini Project - 1,0-0-4-2
+PC605,Mini Project 2,0-0-4-2
+PC613,Communication Skills,3-0-2-4
+PC650,Projects / Industrial Internship,0-0-32-16
+PC721,Approaches to Culture and Communication ,3-0-0-3
+PC722,Fundamentals of Design - I,3-0-4-5
+PC725,Introduction to Narratology ,3-0-2-4
+PC731,Research Methodologies - Ethnography and its Applications ,3-0-0-3
+PC732,Fundamentals of Design - II,3-0-4-5
+PC733,"Web Design: Applications, Inter-Connectibility",3-0-2-4
+PC740,"Research Proposal Seminar: Rationale, Process, Outcome",1-0-4-3
+PC741,Animation ,3-0-2-4
+PC743,Thematic Seminar/Workshop OR RR (Reading/Research) course if no thematic Seminar/Workshop is offered ,3-0-0-3
+PC745,Research Application: Constructing Narratives,3-0-2-4
+PC746,Information Design,3-0-4-5
+PC748,Design History,1-0-2-2
+PC749,Image Text Sound,3-0-4-5
+PC750,Photography,1.5-0-2-2.5
+PC751,Video,1.5-0-2-2.5
+PC752,Interaction Design,1-0-4-3
+PC842,MTech (ICT) Minor Project ,0-0-6-3
+PC843,MTech (EC) Minor Project ,0-0-6-3
+PC844,MTech (ICT) Major Project 1 ,0-0-12-6
+PC845,MTech (EC) Major Project 1 ,0-0-12-6
+PC874,Research Methodology,3-0-0-3
+SC107,Calculus,3-1-0-4
+SC205,Discrete Mathematics,3-1-0-4
+SC217,Electromagnetic Theory,3-1-0-4
+"SC222/
+MC313/
+SC421",Linear Algebra/Modern Algebra/ Linear Algebra,3-0-0/2-3/4
+SC223,Linear Algebra,3-1-0-4
+SC224,Probability and Statistics,3-1-0-4
+SC401,Introduction Nonlinear Dynamics,3-0-0-3
+SC402,Introduction to Cryptography,3-0-0-3
+SC407,Environmental Science,3-0-0-3
+SC421,Introduction to Modern Algebra,3-0-0-3
+SC435,Introduction to Complex Network,3-0-0-3
+SC470,Algorithmic Graph Theory,3-0-2-4
+SC471,Time Series Analysis,3-0-0-3
+SC472,Econometric Data Analysis Using R,3-0-0-3
+SC474,Optical Communication,3-0-0-3
+SC477,Quantum Information Theorty,3-0-0-3
+SC531,Probability and Random Variables,3-0-0-3
+SC601,Optimization,2-0-2-3
+SC602,Numerical Methods for Data Science,3-0-2-4
+SC612,Discrete Mathematics,3-1-0-4
+SC613,Mathematical Foundation for Data Science,3-1-0-4
+SC614,Statistical Methods (Lab:R),3-0-2-4

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timetable Generator</title>
     <link href="/dist/tailwind.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"/>
     <script src="https://kit.fontawesome.com/fc59f3647c.js" crossorigin="anonymous"></script>
@@ -85,13 +86,26 @@
     >
       {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
       <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'home' %}">
+      <span class="text-[16px] ml-3 text-gray-200 font-bold">Dashboard</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'program_master' %}">
       <span class="text-[16px] ml-3 text-gray-200 font-bold">Programs</span>
+      </a>
     </div>
     <div
       class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
     >
       <i class="fa-sharp fa-solid fa-book ml-0.5" style="color: #ffffff;"></i>
+      <a href="{% url 'course_master' %}">
       <span class="text-[16px] ml-4 text-gray-200 font-bold">Courses</span>
+      </a>
     </div>
     {% comment %} <div class="my-4 bg-gray-600 h-[1px]"></div> {% endcomment %}
     <div
@@ -101,11 +115,58 @@
       {% comment %} <i class="bi bi-chat-left-text-fill"></i> {% endcomment %}
       <i class="fa-solid fa-user-tie ml-0.5" style="color: #ffffff;"></i>
       <div class="flex justify-between w-full items-center">
-        <span class="text-[16px] ml-4 text-gray-200 font-bold">Faculties</span>
+        <a href="{% url 'faculty_master' %}">
+          <span class="text-[16px] ml-4 text-gray-200 font-bold">Faculties</span>
+        </a>
         {% comment %} <span class="text-sm rotate-180" id="arrow">
           <i class="bi bi-chevron-down"></i>
         </span> {% endcomment %}
       </div>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'course_offered' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Course Offered</span>
+        </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'course_faculty' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Semester</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'electives' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Elective Details</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'slots' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Slot Assignment</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'timetable' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Generate Timetable</span>
+      </a>
     </div>
 </div>
     <div style="margin-left: 280px;">
@@ -120,22 +181,26 @@
         <div class="container" style="width:70%">
         <table class="table" border="1">
             <tr style="background: #111827; color: white;">
+                <th></th>
                 <th>Program Name</th>
                 <th>Program ID</th>
                 <th>Edit</th>
             </tr>
             {% for result in data%}
             <tr>
+                <td>
+                  <a href="scheme/{{result.id}}"><i class="fa fa-info-circle" style="color:#222529"></i></a>
+                </td>
                 <td>{{result.name}}</td>
                 <td>{{result.id}}</td>
                 <td>
-                    <a href="program_edit/{{result.id}}"><i class="fa fa-edit fa-lg fa-fw" style="color:#222529"></i></a>
+                  <a href="edit-program/{{result.id}}"><i class="fa fa-edit fa-lg fa-fw" style="color:#222529"></i></a>
                 </td>
             </tr>
             {% endfor %}
         </table>
+        </div>
     </center>
-</div>
 </div>
 
 <script type="text/javascript">

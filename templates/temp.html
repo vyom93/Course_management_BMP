@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Year in Links</title>
+</head>
+<body>
+<div class="box-container">
+    <a class="box" href="#" id="autumn1">Autumn <span id="year1"></span></a>
+    <a class="box" href="#" id="autumn2">Autumn <span id="year2"></span></a>
+    <a class="box" href="#" id="winter1">Winter <span id="year3"></span></a>
+</div>
+
+<script>
+    // Get the current year
+    var currentYear = new Date().getFullYear();
+
+    // Update the year portion in the links
+    document.getElementById("year1").textContent = (currentYear) + '-' + (currentYear + 1);
+    document.getElementById("year2").textContent = (currentYear + 1) + '-' + (currentYear + 2);
+    document.getElementById("year3").textContent = (currentYear) + '-' + (currentYear + 1);
+
+    // Add the URL to each link with the updated year
+    document.getElementById("autumn1").href = "/autumn1/" + (currentYear) + '-' + (currentYear + 1);
+    document.getElementById("autumn2").href = "/autumn2/" + (currentYear + 1) + '-' + (currentYear + 2);
+    document.getElementById("winter1").href = "/winter1/" + (currentYear) + '-' + (currentYear + 1);
+</script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Generator</title>
+    <link href="/dist/tailwind.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"/>
+    <script src="https://kit.fontawesome.com/fc59f3647c.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        body{
+        }
+        .navbar{
+            overflow: hidden;
+            background-color: #e3f3f5;;
+            position: fixed;
+            top: 0; 
+            width: 100%; 
+        }
+        .col-lg-7{
+            margin-left:205px;
+        }
+        .btn1{
+            border:none;
+            outline:none;
+            height:42px;
+            width:18%;
+            background-color: #111827;
+            color:white;
+            border-radius:20px;
+            font-weight:bold;
+        }
+        .btn1:hover{
+            background-color: #2563EB;
+            color:white;
+            width:20%;
+            font-weight:bold;
+        }
+
+        .semester-list {
+            border: 1px solid #ccc;
+            width: 70%px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            transition-duration: 5s;
+        }
+
+        .semester-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid black;
+            margin-right: 5px;
+            margin-left: 85%;
+
+
+        }
+
+
+        .semester-title {
+            font-weight: bold;
+        }
+
+        .semester-dropdown {
+            display: none;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <span
+    class="absolute text-white text-4xl top-5 left-4 cursor-pointer"
+    onclick="openSidebar()"
+  >
+    <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
+  </span>
+  <div
+    class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900"
+  >
+    <div class="text-gray-100 text-xl mt-30 pt-8">
+      <div class="bg-gray-900">
+          <img class="object-contain h-48 w-96" src="{% static 'assets/logo.png' %}">
+        </div>
+      <div class="p-2.5 mt-1 flex items-center">
+        {% comment %} <i class="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i> {% endcomment %}
+        <h1 class="font-bold text-gray-200 text-[22px] ml-6">Timetable Generator</h1>
+        <i
+          class="bi bi-x cursor-pointer ml-28 lg:hidden"
+          onclick="openSidebar()"
+        ></i>
+      </div>
+      <div class="my-2 bg-gray-600 h-[1px]"></div>
+    </div>
+    {% comment %} <div
+      class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
+    >
+      <i class="bi bi-search text-sm"></i>
+      <input
+        type="text"
+        placeholder="Search"
+        class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
+      />
+    </div> {% endcomment %}
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'home' %}">
+      <span class="text-[16px] ml-3 text-gray-200 font-bold">Dashboard</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'program_master' %}">
+      <span class="text-[16px] ml-3 text-gray-200 font-bold">Programs</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      <i class="fa-sharp fa-solid fa-book ml-0.5" style="color: #ffffff;"></i>
+      <a href="{% url 'course_master' %}">
+      <span class="text-[16px] ml-4 text-gray-200 font-bold">Courses</span>
+      </a>
+    </div>
+    {% comment %} <div class="my-4 bg-gray-600 h-[1px]"></div> {% endcomment %}
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+      onclick="dropdown()"
+    >
+      {% comment %} <i class="bi bi-chat-left-text-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-user-tie ml-0.5" style="color: #ffffff;"></i>
+      <div class="flex justify-between w-full items-center">
+        <a href="{% url 'faculty_master' %}">
+          <span class="text-[16px] ml-4 text-gray-200 font-bold">Faculties</span>
+        </a>
+        {% comment %} <span class="text-sm rotate-180" id="arrow">
+          <i class="bi bi-chevron-down"></i>
+        </span> {% endcomment %}
+      </div>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'course_offered' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Course Offered</span>
+        </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'course_faculty' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Semester</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'electives' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Elective Details</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'slots' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Slot Assignment</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'timetable' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Generate Timetable</span>
+      </a>
+    </div>
+</div>
+    <div style="margin-left: 280px;">
+    <center>
+        <br><br><br>
+        <div class="container" style="width:70%">
+
+        <div class="semester-list">
+            <div class="semester-header" id="semesterHeader1">
+                <div class="semester-title">Semester 1</div>
+                <div class="arrow" id="arrow1"></div>
+            </div>
+            <div class="container" style="width:100%" id="semesterDropdown1">
+                <br>
+                <table class="table" border="1">
+                    <thead>
+                        <tr style="background: #111827; color: white;">
+                            <th>Subject</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item1 in data_list %}
+                            {% if item1.2 == 1 and item1.3 == 1 %}
+                            <tr>
+                                <td>{{ item1.0 }}</td>
+                                <td>{{ item1.1 }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                        <!-- Add more rows for Semester 1 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="semester-list">
+            <div class="semester-header" id="semesterHeader2">
+                <div class="semester-title">Semester 2</div>
+                <div class="arrow" id="arrow2"></div>
+            </div>
+            <div class="container" style="width:100%" id="semesterDropdown2">
+                <br>
+                <table class="table" border="1">
+                    <thead>
+                        <tr style="background: #111827; color: white;">
+                            <th>Subject</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item1 in data_list %}
+                        {% if item1.2 == 1 and item1.3 == 2 %}
+                        <tr>
+                            <td>{{ item1.0 }}</td>
+                            <td>{{ item1.1 }}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        <!-- Add more rows for Semester 1 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="semester-list">
+            <div class="semester-header" id="semesterHeader3">
+                <div class="semester-title">Semester 3</div>
+                <div class="arrow" id="arrow3"></div>
+            </div>
+            <div class="container" style="width:100%" id="semesterDropdown3">
+                <br>
+                <table class="table" border="1">
+                    <thead>
+                        <tr style="background: #111827; color: white;">
+                            <th>Subject</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item1 in data_list %}
+                            {% if item1.2 == 2 and item1.3 == 1 %}
+                            <tr>
+                                <td>{{ item1.0 }}</td>
+                                <td>{{ item1.1 }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                        <!-- Add more rows for Semester 1 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="semester-list">
+            <div class="semester-header" id="semesterHeader4">
+                <div class="semester-title">Semester 4</div>
+                <div class="arrow" id="arrow4"></div>
+            </div>
+            <div class="container" style="width:100%" id="semesterDropdown4">
+                <br>
+                <table class="table" border="1">
+                    <thead>
+                        <tr style="background: #111827; color: white;">
+                            <th>Subject</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item1 in data_list %}
+                        {% if item1.2 == 2 and item1.3 == 2 %}
+                        <tr>
+                            <td>{{ item1.0 }}</td>
+                            <td>{{ item1.1 }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                        <!-- Add more rows for Semester 1 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="semester-list">
+            <div class="semester-header" id="semesterHeader5">
+                <div class="semester-title">Semester 5</div>
+                <div class="arrow" id="arrow5"></div>
+            </div>
+            <div class="container" style="width:100%" id="semesterDropdown5">
+                <br>
+                <table class="table" border="1">
+                    <thead>
+                        <tr style="background: #111827; color: white;">
+                            <th>Subject</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item1 in data_list %}
+                        {% if item1.2 == 3 and item1.3 == 1 %}
+                        <tr>
+                            <td>{{ item1.0 }}</td>
+                            <td>{{ item1.1 }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                        <!-- Add more rows for Semester 1 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="semester-list">
+            <div class="semester-header" id="semesterHeader6">
+                <div class="semester-title">Semester 6</div>
+                <div class="arrow" id="arrow6"></div>
+            </div>
+            <div class="container" style="width:100%" id="semesterDropdown6">
+                <br>
+                <table class="table" border="1">
+                    <thead>
+                        <tr style="background: #111827; color: white;">
+                            <th>Subject</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item1 in data_list %}
+                        {% if item1.2 == 3 and item1.3 == 2 %}
+                        <tr>
+                            <td>{{ item1.0 }}</td>
+                            <td>{{ item1.1 }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                        <!-- Add more rows for Semester 1 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="semester-list">
+            <div class="semester-header" id="semesterHeader7">
+                <div class="semester-title">Semester 7</div>
+                <div class="arrow" id="arrow7"></div>
+            </div>
+            <div class="container" style="width:100%" id="semesterDropdown7">
+                <br>
+                <table class="table" border="1">
+                    <thead>
+                        <tr style="background: #111827; color: white;">
+                            <th>Subject</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item1 in data_list %}
+                        {% if item1.2 == 4 and item1.3 == 1 %}
+                        <tr>
+                            <td>{{ item1.0 }}</td>
+                            <td>{{ item1.1 }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                        <!-- Add more rows for Semester 1 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="semester-list">
+            <div class="semester-header" id="semesterHeader8">
+                <div class="semester-title">Semester 8</div>
+                <div class="arrow" id="arrow8"></div>
+            </div>
+            <div class="container" style="width:100%" id="semesterDropdown8">
+                <br>
+                <table class="table" border="1">
+                    <thead>
+                        <tr style="background: #111827; color: white;">
+                            <th>Subject</th>
+                            <th>Credit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item1 in data_list %}
+                        {% if item1.2 == 4 and item1.3 == 2 %}
+                        <tr>
+                            <td>{{ item1.0 }}</td>
+                            <td>{{ item1.1 }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                        <!-- Add more rows for Semester 1 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </center>
+</div>
+</div>
+
+<script type="text/javascript">
+   document.addEventListener("DOMContentLoaded", () => {
+    // Initially, hide the dropdowns and set the arrows to point down
+    for (let i = 1; i <= 8; i++) {
+        const semesterDropdown = document.getElementById(`semesterDropdown${i}`);
+        const arrow = document.getElementById(`arrow${i}`);
+        
+        semesterDropdown.style.display = "none";
+        arrow.style.transform = "rotate(0deg)";
+        
+        const semesterHeader = document.getElementById(`semesterHeader${i}`);
+        const createToggleListener = (dropdown, arrow) => () => {
+            if (dropdown.style.display === "none") {
+                dropdown.style.display = "block";
+                arrow.style.transform = "rotate(180deg)";
+            } else {
+                dropdown.style.display = "none";
+                arrow.style.transform = "rotate(0deg)";
+            }
+        };
+        
+        semesterHeader.addEventListener("click", createToggleListener(semesterDropdown, arrow));
+    }
+});
+
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</body>
+</html>
+

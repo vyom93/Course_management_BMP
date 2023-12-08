@@ -1,0 +1,339 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Generator</title>
+    <link href="/dist/tailwind.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"/>
+    <script src="https://kit.fontawesome.com/fc59f3647c.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        body{
+        }
+        .navbar{
+            overflow: hidden;
+            background-color: #e3f3f5;;
+            position: fixed;
+            top: 0; 
+            width: 100%; 
+        }
+        .col-lg-7{
+            margin-left:205px;
+        }
+        .btn1{
+            border:none;
+            outline:none;
+            height:42px;
+            width:20%;
+            background-color: #111827;
+            color:white;
+            border-radius:20px;
+            font-weight:bold;
+        }
+        .btn1:hover{
+            background-color: #2563EB;
+            color:white;
+            width:26%;
+            font-weight:bold;
+        }
+
+        #import3{
+            border:none;
+            outline:none;
+            height:42px;
+            width:18%;
+            background-color: #111827;
+            color:white;
+            border-radius:20px;
+            font-weight:bold;
+        }
+        #import3:hover{
+            background-color: #2563EB;
+            color:white;
+            width:20%;
+            font-weight:bold;
+        }
+        #search-input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 200px;
+    }
+
+    /* Style for the search button */
+    #search-button {
+        background-color: #4c4c4c; /* Blue color */
+        color: white;
+        border: none;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        padding: 10px 20px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+
+    /* Hover effect for the search button */
+    #search-button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+      .options {
+          display: flex !important;
+          flex-direction: row; /* Change to row */
+          justify-content:center;
+          width: 900px;
+          font-size:16px;
+        }
+
+        .option {
+          text-decoration: none;
+          padding: 12px;
+          margin: 15px;
+          width: 300px;
+          border-radius: 10px;
+          color: #fff;
+          background-color: #111827;
+          display: inline-block;
+          font-weight: bold;
+        }
+
+        .option:hover {
+          background-color: #0056b3;
+          color:white;
+        }
+
+        .option.active {
+          background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    
+    <span
+    class="absolute text-white text-4xl top-5 left-4 cursor-pointer"
+    onclick="openSidebar()"
+  >
+    <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
+  </span>
+  <div
+    class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900"
+  >
+    <div class="text-gray-100 text-xl mt-30 pt-8">
+      <div class="bg-gray-900">
+          <img class="object-contain h-48 w-96" src="{% static 'assets/logo.png' %}">
+        </div>
+      <div class="p-2.5 mt-1 flex items-center">
+        {% comment %} <i class="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i> {% endcomment %}
+        <h1 class="font-bold text-gray-200 text-[22px] ml-6">Timetable Generator</h1>
+        <i
+          class="bi bi-x cursor-pointer ml-28 lg:hidden"
+          onclick="openSidebar()"
+        ></i>
+      </div>
+      <div class="my-2 bg-gray-600 h-[1px]"></div>
+    </div>
+    {% comment %} <div
+      class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
+    >
+      <i class="bi bi-search text-sm"></i>
+      <input
+        type="text"
+        placeholder="Search"
+        class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
+      />
+    </div> {% endcomment %}
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'home' %}">
+      <span class="text-[16px] ml-3 text-gray-200 font-bold">Dashboard</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'program_master' %}">
+      <span class="text-[16px] ml-3 text-gray-200 font-bold">Programs</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      <i class="fa-sharp fa-solid fa-book ml-0.5" style="color: #ffffff;"></i>
+      <a href="{% url 'course_master' %}">
+      <span class="text-[16px] ml-4 text-gray-200 font-bold">Courses</span>
+      </a>
+    </div>
+    {% comment %} <div class="my-4 bg-gray-600 h-[1px]"></div> {% endcomment %}
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+      onclick="dropdown()"
+    >
+      {% comment %} <i class="bi bi-chat-left-text-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-user-tie ml-0.5" style="color: #ffffff;"></i>
+      <div class="flex justify-between w-full items-center">
+        <a href="{% url 'faculty_master' %}">
+            <span class="text-[16px] ml-4 text-gray-200 font-bold">Faculties</span>
+        </a>
+        {% comment %} <span class="text-sm rotate-180" id="arrow">
+          <i class="bi bi-chevron-down"></i>
+        </span> {% endcomment %}
+      </div>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'course_offered' %}">
+      <span class="text-[16px] ml-3 text-gray-200 font-bold">Course Offered</span>
+      </a>
+    </div>
+    <div
+    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+  >
+    {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+    <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+    <a href="{% url 'course_faculty' %}">
+      <span class="text-[16px] ml-3 text-gray-200 font-bold">Faculty Assignment</span>
+    </a>
+  </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'slots' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Slot Assignment</span>
+      </a>
+    </div>
+    <div
+      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+    >
+      {% comment %} <i class="bi bi-house-door-fill"></i> {% endcomment %}
+      <i class="fa-solid fa-graduation-cap" style="color: #ffffff;"></i>
+      <a href="{% url 'timetable' %}">
+        <span class="text-[16px] ml-3 text-gray-200 font-bold">Generate Timetable</span>
+      </a>
+    </div>
+</div>
+    <div style="margin-left: 280px;">
+    <center>
+        <br/>
+        <br/>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="margin-left: 39.5%; font-size: 20px; font-weight: 500;">Courses offered in Autumn1</h3>
+          <button class="btn1 nav-link text" onclick="location.href='{% url 'winter1' %}'" style="border-radius: 5px; width: 150px; margin-right: 40px;">Next Semester</button>
+        </div>
+        
+        <br/>
+        <br/>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="csv_file" accept=".csv" required>
+            <button type="submit" id="import3">Import CSV</button>
+            {% if messages %}
+                {% for mess in messages %}
+                    <br>
+                    <b id="msg3" style="color: green;"></b>
+                {% endfor %}
+            {% endif %}
+        </form>
+        {% comment %} <br/><a href="{% url 'insert_autumn1' %}" class="btn1 nav-link text">Add New Course</a> {% endcomment %}
+        <br/>
+        <a href="{% url 'queries_autumn1' %}" class="btn1 nav-link text">Queries</a>
+        {% comment %} <form method="get" enctype="multipart/form-data" action="{% url 'search_content' %}">
+          {% csrf_token %}
+          <input type="text" name="search_query" id="search-input" placeholder="Search...">
+          <button type="submit" id="search-button">Search</button>
+        </form> {% endcomment %}
+        {% comment %} <button type="submit" name="import" id="import" style="margin-bottom: 15px;" onclick="{% url 'course_master' %}">Import CSV</button> {% endcomment %}
+        {% comment %} <br/> {% endcomment %}
+        
+        {% comment %} <div class="options">
+          <a class="option" href="{% url 'autumn1' %}">Courses offered in Autumn <br><span id="year"></span></a><br>
+          <a class="option" href="{% url 'not_autumn1' %}">Courses not offered in Autumn <br><span id="year1"></span></a><br>
+        </div> {% endcomment %}
+
+        <br>
+        <div class="container" style="width:70%">
+        <table class="table" border="1">
+            <tr style="background: #111827; color: white;">
+                <th>No.</th>
+                <th>Course No.</th>
+                <th>Program ID</th>
+                <th>Year</th>
+                <th>Section</th>
+                <th>Faculty</th>
+                <th>Edit</th>
+                {% comment %} <th>Delete</th> {% endcomment %}
+            </tr>
+            {% for result in data%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{result.course_id}}</td>
+                <td>{{result.program_id}}</td>
+                <td>{{result.year}}</td>
+                <td>{{result.section}}</td>
+                <td>{{result.faculty_sname}}</td>
+                <td>
+                  <a href="edit-autumn1/{{result.course_id}}+{{result.program_id}}+{{result.year}}+{{result.section}}"><i class="fa fa-edit fa-lg fa-fw" style="color:#222529"></i></a>
+                </td>
+                {% comment %} <td>
+                    <a href="delete-course/{{result.course_id}}"><i class="fa-solid fa-trash-can fa-lg fa-fw" style="color:#222529"></i></a>
+                </td> {% endcomment %}
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</div>
+</div>
+
+<script>
+  // Get the current year
+  var currentYear = new Date().getFullYear();
+
+  // Update the year portion in the links
+  document.getElementById("year").textContent = (currentYear-1) + '-' + (currentYear);
+  document.getElementById("year1").textContent = (currentYear-1) + '-' + (currentYear);
+
+</script>
+<script type="text/javascript">
+    btn3 = document.getElementById('import3');
+    msg3 = document.getElementById('msg3');
+
+    btn3.onclick = function() {
+        msg3.innerHTML = "File Imported Successfully.";
+        setTimeout(function(){ msg3.hide() }, 5000);
+    }
+
+    function dropdown() {
+      document.querySelector("#submenu").classList.toggle("hidden");
+      document.querySelector("#arrow").classList.toggle("rotate-0");
+    }
+    dropdown();
+
+    function openSidebar() {
+      document.querySelector(".sidebar").classList.toggle("hidden");
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</body>
+</html>
