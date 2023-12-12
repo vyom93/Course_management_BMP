@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('database_prev/', views.database_prev, name='database_prev'),
+    path('database_next/', views.database_next, name='database_next'),
 
     ########### Program Master ###########
     path('program-master', views.program_master, name='program_master'),

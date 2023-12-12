@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'timetable_generator',
     'crispy_forms',
-    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'timetable_generator.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'courses-2023.db',
+        'NAME': r'/Users/vyompatel/Desktop/Timetable-Generator/Timetable-Generator/Timetable-Generator/Timetable-Generator/timetable_generator/courses-2026.db',
     }
 }
 

@@ -49,7 +49,7 @@ def update_program(request,id):
 
 ################################ SCHEME ################################
 def scheme(request,id):
-    # connection = sqlite3.connect('courses-2023.db')
+    # current_database_name = settings.DATABASES['default']['NAME']
     # cursor = connection.cursor()
     # cursor.execute("select Course.course_name,Course.course_credits,CourseOffered.year,CourseOffered.sem from CourseOffered left join Course on Course.course_id=CourseOffered.course_id")
     temp=CourseOffered.objects.filter(program_id=id)
@@ -107,7 +107,9 @@ def search_course(request):
         # Print the search query to the console
         # print(f"Search Query: {search_query}")
 
-        connection = sqlite3.connect('courses-2023.db')
+        
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
 
         # Retrieve the desired columns from the tables
@@ -321,7 +323,8 @@ def search_program(request):
         # Print the search query to the console
         # print(f"Search Query: {search_query}")
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
 
         # Retrieve the desired columns from the tables
@@ -547,7 +550,8 @@ def export_csv(request):
     response['Content-Disposition'] = 'attachment; filename="Timetable.csv"'
 
     # Connect to the SQLite3 database
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
 
     # Retrieve the desired columns from the tables
@@ -606,7 +610,8 @@ def export_csv(request):
 
 def timetable(request):
     # Connect to the SQLite3 database
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
 
     cursor.execute("SELECT core_courseoffered.course_id_id, core_courseoffered.program_id_id, core_courseoffered.year, core_courseoffered.sem, core_courseoffered.course_type, core_coursefaculty.faculty_sname, core_coursefaculty.section, core_courseslots.slot FROM core_courseslots INNER JOIN core_courseoffered ON core_courseslots.course_id_id = core_courseoffered.course_id_id INNER JOIN core_coursefaculty ON core_courseoffered.course_id_id = core_coursefaculty.course_id_id ORDER BY core_courseoffered.course_id_id")
@@ -778,7 +783,8 @@ def query1_autumn1(request):
             if key == 'search_query2':
                 search_query2 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -809,7 +815,8 @@ def query2_autumn1(request):
             if key == 'search_query2':
                 search_query2 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -837,7 +844,8 @@ def query3_autumn1(request):
             if key == 'search_query1':
                 search_query1 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -865,7 +873,8 @@ def query4_autumn1(request):
             if key == 'search_query1':
                 search_query1 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -883,7 +892,8 @@ def query4_autumn1(request):
         return render(request, 'autumn1/autumn1.html') 
 
 def query5_autumn1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     # Retrieve the desired columns from the tables
@@ -899,7 +909,8 @@ def query5_autumn1(request):
     return render(request, 'electives.html',{"data":showall})
 
 def query6_autumn1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     # Retrieve the desired columns from the tables
@@ -919,7 +930,8 @@ def query7_autumn1(request):
     return render(request, 'autumn1/autumn1.html',{"data":showall})
 
 def query8_autumn1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     # Retrieve the desired columns from the tables
@@ -935,7 +947,8 @@ def query8_autumn1(request):
     return render(request, 'autumn1/autumn1.html',{"data":showall})
 
 def query9_autumn1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     cursor.execute('SELECT a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname, GROUP_CONCAT(DISTINCT(a.program_id_id)) AS batch_list FROM core_acad_year as a inner join core_course as c inner join core_coursefaculty as cf ON a.course_id_id=c.course_id and c.course_id = cf.course_id_id WHERE sem_id="AS1" GROUP BY a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname')
@@ -946,7 +959,8 @@ def query9_autumn1(request):
     return render(request, 'query9.html',{'data':searched_courses})
 
 def query10_autumn1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     cursor.execute('SELECT a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname, GROUP_CONCAT(DISTINCT(a.program_id_id)) AS batch_list FROM core_acad_year as a inner join core_course as c inner join core_coursefaculty as cf inner join core_courseoffered as co ON a.course_id_id=c.course_id and c.course_id = cf.course_id_id and cf.course_id_id = co.course_id_id WHERE sem_id="AS1" AND course_type="Core" GROUP BY a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname')
@@ -957,7 +971,8 @@ def query10_autumn1(request):
     return render(request, 'query10.html',{'data':searched_courses})
 
 def query11_autumn1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     cursor.execute('SELECT a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname, GROUP_CONCAT(DISTINCT(a.program_id_id)) AS batch_list FROM core_acad_year as a inner join core_course as c inner join core_coursefaculty as cf inner join core_courseoffered as co ON a.course_id_id=c.course_id and c.course_id = cf.course_id_id and cf.course_id_id = co.course_id_id WHERE sem_id="AS1" AND course_type IS NOT "Core" GROUP BY a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname')
@@ -1124,7 +1139,8 @@ def query1_autumn2(request):
             if key == 'search_query2':
                 search_query2 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -1155,7 +1171,8 @@ def query2_autumn2(request):
             if key == 'search_query2':
                 search_query2 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -1183,7 +1200,8 @@ def query3_autumn2(request):
             if key == 'search_query1':
                 search_query1 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -1211,7 +1229,8 @@ def query4_autumn2(request):
             if key == 'search_query1':
                 search_query1 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -1229,7 +1248,8 @@ def query4_autumn2(request):
         return render(request, 'autumn2/autumn2.html') 
 
 def query5_autumn2(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     # Retrieve the desired columns from the tables
@@ -1245,7 +1265,8 @@ def query5_autumn2(request):
     return render(request, 'electives.html',{"data":showall})
 
 def query6_autumn2(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     # Retrieve the desired columns from the tables
@@ -1265,7 +1286,8 @@ def query7_autumn2(request):
     return render(request, 'autumn2/autumn2.html',{"data":showall})
 
 def query8_autumn2(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     # Retrieve the desired columns from the tables
@@ -1281,7 +1303,8 @@ def query8_autumn2(request):
     return render(request, 'autumn2/autumn2.html',{"data":showall})
 
 def query9_autumn2(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     cursor.execute('SELECT a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname, GROUP_CONCAT(DISTINCT(a.program_id_id)) AS batch_list FROM core_acad_year as a inner join core_course as c inner join core_coursefaculty as cf ON a.course_id_id=c.course_id and c.course_id = cf.course_id_id WHERE sem_id="AS2" GROUP BY a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname')
@@ -1292,7 +1315,8 @@ def query9_autumn2(request):
     return render(request, 'query9.html',{'data':searched_courses})
 
 def query10_autumn2(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     cursor.execute('SELECT a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname, GROUP_CONCAT(DISTINCT(a.program_id_id)) AS batch_list FROM core_acad_year as a inner join core_course as c inner join core_coursefaculty as cf inner join core_courseoffered as co ON a.course_id_id=c.course_id and c.course_id = cf.course_id_id and cf.course_id_id = co.course_id_id WHERE sem_id="AS2" AND course_type="Core" GROUP BY a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname')
@@ -1303,7 +1327,8 @@ def query10_autumn2(request):
     return render(request, 'query10.html',{'data':searched_courses})
 
 def query11_autumn2(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     cursor.execute('SELECT a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname, GROUP_CONCAT(DISTINCT(a.program_id_id)) AS batch_list FROM core_acad_year as a inner join core_course as c inner join core_coursefaculty as cf inner join core_courseoffered as co ON a.course_id_id=c.course_id and c.course_id = cf.course_id_id and cf.course_id_id = co.course_id_id WHERE sem_id="AS2" AND course_type IS NOT "Core" GROUP BY a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname')
@@ -1470,7 +1495,8 @@ def query1_winter1(request):
             if key == 'search_query2':
                 search_query2 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -1501,7 +1527,8 @@ def query2_winter1(request):
             if key == 'search_query2':
                 search_query2 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -1529,7 +1556,8 @@ def query3_winter1(request):
             if key == 'search_query1':
                 search_query1 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -1557,7 +1585,8 @@ def query4_winter1(request):
             if key == 'search_query1':
                 search_query1 = value
 
-        connection = sqlite3.connect('courses-2023.db')
+        current_database_name = settings.DATABASES['default']['NAME']
+        connection = sqlite3.connect(current_database_name)
         cursor = connection.cursor()
     
         # Retrieve the desired columns from the tables
@@ -1575,7 +1604,8 @@ def query4_winter1(request):
         return render(request, 'winter1/winter1.html') 
 
 def query5_winter1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     # Retrieve the desired columns from the tables
@@ -1591,7 +1621,8 @@ def query5_winter1(request):
     return render(request, 'electives.html',{"data":showall})
 
 def query6_winter1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     # Retrieve the desired columns from the tables
@@ -1611,7 +1642,8 @@ def query7_winter1(request):
     return render(request, 'winter1/winter1.html',{"data":showall})
 
 def query8_winter1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     # Retrieve the desired columns from the tables
@@ -1627,7 +1659,8 @@ def query8_winter1(request):
     return render(request, 'winter1/winter1.html',{"data":showall})
 
 def query9_winter1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     cursor.execute('SELECT a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname, GROUP_CONCAT(DISTINCT(a.program_id_id)) AS batch_list FROM core_acad_year as a inner join core_course as c inner join core_coursefaculty as cf ON a.course_id_id=c.course_id and c.course_id = cf.course_id_id WHERE sem_id="WS1" GROUP BY a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname')
@@ -1638,7 +1671,8 @@ def query9_winter1(request):
     return render(request, 'query9.html',{'data':searched_courses})
 
 def query10_winter1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     cursor.execute('SELECT a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname, GROUP_CONCAT(DISTINCT(a.program_id_id)) AS batch_list FROM core_acad_year as a inner join core_course as c inner join core_coursefaculty as cf inner join core_courseoffered as co ON a.course_id_id=c.course_id and c.course_id = cf.course_id_id and cf.course_id_id = co.course_id_id WHERE sem_id="WS1" AND course_type="Core" GROUP BY a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname')
@@ -1649,7 +1683,8 @@ def query10_winter1(request):
     return render(request, 'query10.html',{'data':searched_courses})
 
 def query11_winter1(request):
-    connection = sqlite3.connect('courses-2023.db')
+    current_database_name = settings.DATABASES['default']['NAME']
+    connection = sqlite3.connect(current_database_name)
     cursor = connection.cursor()
     
     cursor.execute('SELECT a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname, GROUP_CONCAT(DISTINCT(a.program_id_id)) AS batch_list FROM core_acad_year as a inner join core_course as c inner join core_coursefaculty as cf inner join core_courseoffered as co ON a.course_id_id=c.course_id and c.course_id = cf.course_id_id and cf.course_id_id = co.course_id_id WHERE sem_id="WS1" AND course_type IS NOT "Core" GROUP BY a.course_id_id, c.course_name, c.course_credits, cf.faculty_sname')
@@ -1789,3 +1824,31 @@ def query11_winter1(request):
 
 #     showall=Course.objects.filter(course_id__in = searched_data).order_by('course_id')
 #     return render(request, 'course_master.html',{"data":showall})
+
+# myapp/views.py
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.conf import settings
+import os
+
+def database_prev(request):
+    current_database_name = settings.DATABASES['default']['NAME']
+    year = os.path.splitext(os.path.basename(current_database_name))[0].split('-')[1]
+    print(year)
+    if int(year) > 2023 :
+        year = int(year) - 1
+    else :
+        year = 2023
+    os.system('python3 manage.py database_prev')
+    messages.success(request, 'Database Switched Successfully to Year ' + str(year-1) + '-' + str(year) + '.')
+    return HttpResponseRedirect(reverse('home'))
+
+def database_next(request):
+    current_database_name = settings.DATABASES['default']['NAME']
+    year = os.path.splitext(os.path.basename(current_database_name))[0].split('-')[1]
+    print(year)
+    year = int(year) + 1
+    os.system('python3 manage.py database_next')
+    messages.success(request, 'Database Switched Successfully to Year ' + str(year-1) + '-' + str(year) + '.')
+    return HttpResponseRedirect(reverse('home'))

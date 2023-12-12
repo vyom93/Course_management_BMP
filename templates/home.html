@@ -81,7 +81,7 @@
 
     .box-container{
       display: grid;
-      margin: auto;
+      margin-left: 1%;
       left: 50%;
       top: 20%;
       transform: translate(-30%,-20%);
@@ -99,9 +99,23 @@
       background-color: #111827;
     }
     .box:hover{
-     
       color: white;
       background-color: #0056b3;
+    }
+
+    .copy_database{
+      border: 3px solid;
+      border-radius: 10px;
+      padding: 15px 15px;
+      width: 300px;
+      margin: 5%;
+      font-size: 20px;
+      color: #111827;
+      background-color: white;
+    }
+    .copy_database:hover{
+      color: white;
+      background-color: #111827;
     }
 
     /* Hover effect for the search button */
@@ -125,6 +139,34 @@
     <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
   </span>
   <div
+    class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900"
+  >
+    <div class="text-gray-100 text-xl mt-30 pt-8">
+      <div class="bg-gray-900">
+        <img class="object-contain h-48 w-96" src="{% static 'assets/logo.png' %}">
+      </div>
+      <div class="p-2.5 mt-1 flex items-center">
+        {% comment %} <i class="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i> {% endcomment %}
+        <h1 class="font-bold text-gray-200 text-[22px] ml-6">Timetable Generator</h1>
+        <i
+          class="bi bi-x cursor-pointer ml-28 lg:hidden"
+          onclick="openSidebar()"
+        ></i>
+      </div>
+      <div class="my-2 bg-gray-600 h-[1px]"></div>
+    </div>
+    {% comment %} <div
+      class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
+    >
+      <i class="bi bi-search text-sm"></i>
+      <input
+        type="text"
+        placeholder="Search"
+        class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
+      />
+    </div> {% endcomment %}
+
+    <div
     class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900"
   >
     <div class="text-gray-100 text-xl mt-30 pt-8">
@@ -263,26 +305,86 @@
             <br/>
             <br/>
             <br/>
+            <h1 style="font-weight:500; font-size:24px; color:#111827;"><b>Academic Year </b><span id="year2"><b></b></span></h1>
+            
             <div class="box-container">
-              <a class="box" href="{% url 'autumn1' %}" id="autumn1">Autumn <span id="year1"></span></a>
-              <a class="box" href="{% url 'winter1' %}" id="winter1">Winter <span id="year3"></span></a>
-              <a class="box" href="{% url 'autumn2' %}" id="autumn2">Autumn <span id="year2"></span></a>
+              <div style="display:flex; flex-direction: column; align-items:center;">
+                <a class="box" href="{% url 'autumn1' %}" id="autumn1" style="margin-top:120px;">Autumn <span id="year1"></span></a>
+                <a class="box" href="{% url 'winter1' %}" id="winter1">Winter <span id="year3"></span></a>
+              </div>
+              {% comment %} <a class="box" href="{% url 'autumn2' %}" id="autumn2">Autumn <span id="year2"></span></a> {% endcomment %}
+              <div style="display: flex;">
+                <a class="copy_database" href="{% url 'database_prev' %}" id="copyDatabaseBtn1" style="margin-top: 60px;">Previous Year<span id="copy_db"></span></a>
+                <a class="copy_database" href="{% url 'database_next' %}" id="copyDatabaseBtn2" style="margin-top: 60px;">Next Year<span id="copy_db"></span></a>
+              </div>
+              {% if messages %}
+              <ul class="messages">
+                  {% for mess in messages %}
+                    <br>
+                    <b id="msg" style="color: green; margin-left: 24px;">{{mess}}</b>
+                  {% endfor %}
+              </ul>
+            {% endif %}
           </div>
-          
-          <script>
-              // Get the current year
-              var currentYear = new Date().getFullYear();
-          
-              // Update the year portion in the links
-              document.getElementById("year1").textContent = (currentYear-1) + '-' + (currentYear);
-              document.getElementById("year2").textContent = (currentYear) + '-' + (currentYear + 1);
-              document.getElementById("year3").textContent = (currentYear-1) + '-' + (currentYear);
-            </script>
         </center>
     </div>
       {% comment %} <h2 style="color: #111827; margin-left: 50%; margin-top: 22%; font-weight: 700; font-size:76px;"> Welcome! </h2> {% endcomment %}
     </div>
 
+    <script>
+      var currentYear = 2023
+      
+        // Hide the success message after 5 seconds
+        setTimeout(function() {
+          document.querySelector('.messages').style.display = 'none';
+        }, 5000);
+
+        function updateYearLabels() {
+          document.getElementById("year1").textContent = (currentYear - 1) + '-' + currentYear;
+          document.getElementById("year2").textContent = (currentYear - 1) + '-' + currentYear;
+          document.getElementById("year3").textContent = (currentYear - 1) + '-' + currentYear;
+        }
+      
+      function extractYearFromString(inputString) {
+        // Regular expression to match the year pattern
+        var yearPattern = /\b\d{4}\b/;
+        
+        // Match the year pattern in the inputString
+        var match = inputString.match(yearPattern);
+    
+        // Check if a match is found
+        if (match) {
+          return match[0]; // Extracted year
+        } else {
+          return null; // No year found
+        }
+      }
+      
+      document.getElementById('copyDatabaseBtn1').addEventListener('click', function() {
+          // Send an AJAX request to execute the management command
+          fetch('/copy_database/')
+              .then(response => response.json())
+              .then(data => {
+                  alert(data.message);
+              });
+
+              if (currentYear > 2023) {
+                currentYear -= 1;
+              }
+              updateYearLabels();
+      });
+      document.getElementById('copyDatabaseBtn2').addEventListener('click', function() {
+        // Send an AJAX request to execute the management command
+        fetch('/copy_database/')
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            });
+
+            currentYear += 1;
+            updateYearLabels();
+    });
+  </script>
     <script type="text/javascript">
       function dropdown() {
         document.querySelector("#submenu").classList.toggle("hidden");
